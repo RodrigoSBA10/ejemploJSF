@@ -17,11 +17,11 @@ import java.util.List;
  * @author dachm
  */
 public interface PeliculaServicio {
-    
+
     List<Pelicula> consultarPeliculas();
     Pelicula agregarPelicula(Pelicula p);
     boolean borrarPelicula(Pelicula p);
     void actualizarPelicula(Pelicula p);
     Pelicula buscarPelicula(Pelicula p);
-    
+    Pelicula busvarPeliculaTitulo(String titulo);
 }

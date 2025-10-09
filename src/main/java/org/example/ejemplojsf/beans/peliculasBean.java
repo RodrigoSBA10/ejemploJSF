@@ -16,16 +16,35 @@ public class peliculasBean implements Serializable {
 
     private List<Pelicula> peliculas;
     private PeliculaServicio peliServ;
-
+    protected String titulo;
+    private Pelicula pelicula;
     public peliculasBean() {
         peliServ=new PeliculaServicioImp();
-        //peliculas=new ArrayList<Pelicula>();
         peliculas= peliServ.consultarPeliculas();
-
-
+    }
+    public void buscarTitulo(){
+        System.out.println(this.titulo);
+        pelicula = peliServ.busvarPeliculaTitulo(titulo);
     }
 
     public List<Pelicula> getPeliculas() {
         return peliculas;
     }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 }
+

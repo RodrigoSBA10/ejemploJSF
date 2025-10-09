@@ -7,21 +7,21 @@ import org.hibernate.annotations.Check;
 
 @Entity
 @Table(name="peliculas")
-
+@NamedQuery(name = "selectPeliculaTitulo", query = "SELECT p FROM Pelicula p WHERE p.titulo=:titulo")
 public class Pelicula
 {
-@Id
-@Column(name="id_pelicula")
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name="idPe")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String titulo;
 
- @Column(name="genero")
+    @Column(name="genero")
     private String tipo;
 
     private float duracion;
 
- public int getId(){
+    public int getId(){
         return id;
     }
 

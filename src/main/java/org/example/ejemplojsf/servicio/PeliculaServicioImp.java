@@ -5,54 +5,49 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import org.example.ejemplojsf.modelo.Pelicula;
+import org.example.ejemplojsf.repositorio.RepoPelicula;
+import org.example.ejemplojsf.repositorio.RepoPeliculaImp;
 
 
 import java.util.List;
 
 public class PeliculaServicioImp implements PeliculaServicio{
 
-    protected EntityManager em;
+    public RepoPelicula repoPelicula;
 
     public PeliculaServicioImp() {
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("basePeliculas");
-        em = emf.createEntityManager();
+        repoPelicula = new RepoPeliculaImp();
     }
 
 
     @Override
     public List<Pelicula> consultarPeliculas() {
-        TypedQuery<Pelicula> query= em.createQuery("SELECT p FROM Pelicula p",Pelicula.class);
-        return query.getResultList();
+        return repoPelicula.getPeliculas();
     }
 
     @Override
     public Pelicula agregarPelicula(Pelicula p) {
-        em.getTransaction().begin();
-        em.persist(p);
-        em.getTransaction().commit();
-        return p;
+        return repoPelicula.addPelicula(p);
     }
 
     @Override
     public boolean borrarPelicula(Pelicula p) {
-        em.getTransaction().begin();
-        em.remove(p);
-        em.getTransaction().commit();
-       return buscarPelicula(p)!=null;
+        return  repoPelicula.deletePelicula(p);
     }
 
     @Override
     public void actualizarPelicula(Pelicula p) {
-        em.getTransaction().commit();
-        em.merge(p);
-        em.getTransaction().commit();
-
+        repoPelicula.updatePelicula(p);
     }
 
     @Override
     public Pelicula buscarPelicula(Pelicula p) {
-        return em.find(Pelicula.class,p.getId());
+        return repoPelicula.searchPelicula(p);
+    }
+
+    @Override
+    public Pelicula busvarPeliculaTitulo(String titulo) {
+        return repoPelicula.searchPeliculaTitulo(titulo);
     }
 
 
