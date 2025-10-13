@@ -11,4 +11,6 @@ public interface RepoPelicula {
     void updatePelicula(Pelicula p);
     Pelicula searchPelicula(Pelicula p);
     Pelicula searchPeliculaTitulo(String titulo);
+    List<Pelicula> searchPeliculasDuracionCriteria(float duracion);
+    List<Pelicula> searchGenerDuration(String genero, float duracion);
 }

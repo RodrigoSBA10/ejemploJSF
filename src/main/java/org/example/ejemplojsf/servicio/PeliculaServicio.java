@@ -24,4 +24,6 @@ public interface PeliculaServicio {
     void actualizarPelicula(Pelicula p);
     Pelicula buscarPelicula(Pelicula p);
     Pelicula busvarPeliculaTitulo(String titulo);
+    List<Pelicula> consultarPeliculasDuracionMayor(float duracion);
+    List<Pelicula> buscarPeliculaGeneroDuracion(String genero, float duracion);
 }

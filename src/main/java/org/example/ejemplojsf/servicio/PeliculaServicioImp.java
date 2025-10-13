@@ -50,5 +50,15 @@ public class PeliculaServicioImp implements PeliculaServicio{
         return repoPelicula.searchPeliculaTitulo(titulo);
     }
 
+    @Override
+    public List<Pelicula> consultarPeliculasDuracionMayor(float duracion) {
+        return repoPelicula.searchPeliculasDuracionCriteria(duracion);
+    }
+
+    @Override
+    public List<Pelicula> buscarPeliculaGeneroDuracion(String genero, float duracion) {
+        return repoPelicula.searchGenerDuration(genero, duracion);
+    }
+
 
 }
