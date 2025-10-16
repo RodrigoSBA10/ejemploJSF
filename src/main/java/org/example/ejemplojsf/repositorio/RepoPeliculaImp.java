@@ -2,6 +2,7 @@ package org.example.ejemplojsf.repositorio;
 
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaDelete;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.example.ejemplojsf.modelo.Pelicula;
@@ -66,6 +67,7 @@ public class RepoPeliculaImp implements  RepoPelicula {
         Root<Pelicula> rootPei = criteria.from(Pelicula.class);
         criteria.select(rootPei);
         criteria.where(cb.greaterThan(rootPei.get("duracion"), duracion));
+        criteria.orderBy(cb.desc(rootPei.get("titulo")));
         List<Pelicula> resultado = em.createQuery(criteria).getResultList();
         return resultado;
     }
@@ -77,5 +79,26 @@ public class RepoPeliculaImp implements  RepoPelicula {
         query.setParameter(1,genero);
         query.setParameter(2,duracion);
         return query.getResultList();
+    }
+
+    @Override
+    public float getDurationProm() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Double>  criteria = cb.createQuery(Double.class);
+        Root<Pelicula> rootPei = criteria.from(Pelicula.class);
+        criteria.select(cb.avg(rootPei.get("duracion")));
+        return em.createQuery(criteria).getSingleResult().floatValue();
+    }
+
+    @Override
+    public void deleteMOvie(int id) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaDelete<Pelicula> criteria = cb.createCriteriaDelete(Pelicula.class);
+        Root<Pelicula>  rootPei = criteria.from(Pelicula.class);
+        criteria.where(cb.equal(rootPei.get("id"), id));
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.createQuery(criteria).executeUpdate();
+        transaction.commit();
     }
 }

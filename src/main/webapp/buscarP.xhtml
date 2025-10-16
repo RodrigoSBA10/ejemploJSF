@@ -4,7 +4,6 @@
 <h:head>
     <title>Buscar Peliculas</title>
 </h:head>
-
 <h:body>
     <h:form>
         <h:outputLabel>Ingress el titulo </h:outputLabel>
@@ -12,5 +11,8 @@
         <h:commandButton id="buscarTitle" action="#{peliculasbean.buscarTitulo}" value="Buscar"></h:commandButton>
     </h:form>
     <h:outputText value="#{peliculasbean.pelicula}"/>
+    <h:form>
+        <h:commandButton id="eliminarMovie" action="#{peliculasbean.eliminarPelicula}" value="eliminar"></h:commandButton>
+    </h:form>
 </h:body>
 </html>

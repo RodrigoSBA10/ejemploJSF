@@ -26,4 +26,6 @@ public interface PeliculaServicio {
     Pelicula busvarPeliculaTitulo(String titulo);
     List<Pelicula> consultarPeliculasDuracionMayor(float duracion);
     List<Pelicula> buscarPeliculaGeneroDuracion(String genero, float duracion);
+    float obtenerPromedioDuracion();
+    void borrarPeliculaid(int id);
 }

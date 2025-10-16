@@ -16,23 +16,43 @@ public class PeliculasBean implements Serializable {
     private List<Pelicula> peliculas;
     private PeliculaServicio peliServ;
     private List<Pelicula> PpelisGeneroXduracion;
+    private List<Pelicula> peliculasDuracion;
     protected String titulo;
     private Pelicula pelicula;
     private String genero;
     private float duracion;
+    private float promedio;
     public PeliculasBean() {
         peliServ=new PeliculaServicioImp();
+    }
+    public void peliculas(){
         peliculas = peliServ.consultarPeliculas();
-        //peliculas = peliServ.consultarPeliculasDuracionMayor(1);
-        //peliculas= peliServ.buscarPeliculaGeneroDuracion(genero, duracion);
+    }
+    public void buscarDuracion(){
+        peliculasDuracion = peliServ.consultarPeliculasDuracionMayor(duracion);
     }
     public void buscarTitulo(){
-        System.out.println(this.titulo);
         pelicula = peliServ.busvarPeliculaTitulo(titulo);
     }
     public void  buscarGeneroDuracion(){
         PpelisGeneroXduracion = peliServ.buscarPeliculaGeneroDuracion(genero, duracion);
     }
+
+    public void eliminarPelicula(){
+        if (pelicula!=null){
+            peliServ.borrarPeliculaid(pelicula.getId());
+            pelicula = null;
+        }
+    }
+
+    public void agregarPeli(){
+        Pelicula nuevaPeli = new Pelicula();
+        nuevaPeli.setTitulo(titulo);
+        nuevaPeli.setTipo(genero);
+        nuevaPeli.setDuracion(duracion);
+        peliServ.agregarPelicula(nuevaPeli);
+    }
+
     public List<Pelicula> getPeliculas() {
         return peliculas;
     }
@@ -75,6 +95,22 @@ public class PeliculasBean implements Serializable {
 
     public void setPpelisGeneroXduracion(List<Pelicula> ppelisGeneroXduracion) {
         PpelisGeneroXduracion = ppelisGeneroXduracion;
+    }
+
+    public float getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(float promedio) {
+        this.promedio = promedio;
+    }
+
+    public List<Pelicula> getPeliculasDuracion() {
+        return peliculasDuracion;
+    }
+
+    public void setPeliculasDuracion(List<Pelicula> peliculasDuracion) {
+        this.peliculasDuracion = peliculasDuracion;
     }
 }
 

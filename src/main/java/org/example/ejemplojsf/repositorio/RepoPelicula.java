@@ -13,4 +13,6 @@ public interface RepoPelicula {
     Pelicula searchPeliculaTitulo(String titulo);
     List<Pelicula> searchPeliculasDuracionCriteria(float duracion);
     List<Pelicula> searchGenerDuration(String genero, float duracion);
+    float getDurationProm();
+    void deleteMOvie(int id);
 }

@@ -1,15 +1,10 @@
 package org.example.ejemplojsf.servicio;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
 import org.example.ejemplojsf.modelo.Pelicula;
 import org.example.ejemplojsf.repositorio.RepoPelicula;
 import org.example.ejemplojsf.repositorio.RepoPeliculaImp;
-
-
 import java.util.List;
+
+// Logica de negocio
 
 public class PeliculaServicioImp implements PeliculaServicio{
 
@@ -58,6 +53,16 @@ public class PeliculaServicioImp implements PeliculaServicio{
     @Override
     public List<Pelicula> buscarPeliculaGeneroDuracion(String genero, float duracion) {
         return repoPelicula.searchGenerDuration(genero, duracion);
+    }
+
+    @Override
+    public float obtenerPromedioDuracion() {
+        return repoPelicula.getDurationProm();
+    }
+
+    @Override
+    public void borrarPeliculaid(int id) {
+        repoPelicula.deleteMOvie(id);
     }
 
 

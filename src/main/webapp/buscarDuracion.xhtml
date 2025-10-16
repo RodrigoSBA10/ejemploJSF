@@ -1,14 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-    <title>Peliculas</title>
+    <title>Buscar Peliculas</title>
 </h:head>
 
 <h:body>
-    <h:outputLabel value="#{peliculasbean.peliculas()}">Lista de peliculas</h:outputLabel>
+    <h:form>
+        <h:outputLabel>Ingress el titulo </h:outputLabel>
+        <h:inputText id="busqueda" value="#{peliculasbean.duracion}"/>
+        <h:commandButton id="buscarTitle" action="#{peliculasbean.buscarDuracion()}" value="Buscar"></h:commandButton>
+    </h:form>
     <h:dataTable id="peliculas"
-                 value="#{peliculasbean.peliculas}"
+                 value="#{peliculasbean.peliculasDuracion}"
                  var="peli"
                  headerClass="list-header"
                  styleClass="list-background"
@@ -35,7 +39,5 @@
             <h:outputText value="${peli.duracion}" />
         </h:column>
     </h:dataTable>
-    <h:outputLabel>El promedio de las peliculas registrada es: </h:outputLabel>
-    <h:outputLabel value="${peliculasbean.promedio}"></h:outputLabel>
 </h:body>
 </html>
